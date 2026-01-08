@@ -49,6 +49,7 @@ export interface CurrencyApiResponse {
 - Im Http Service einen weiteren Endpunkt angesprochen für die Währungsumrechnungswerte, hierfür wurde dann auch der Währungscode verwendet und gibt ein `CurrencyApiResponse` zurück
 - Berechnung der Währungsumwandlungswerten falls alle Daten angegeben wurden
 - Letztes refactoring und löschen des vorherigen projektes
+- Nochmal die AI ein schöneres UI generieren lassen
 
 ## Endpunkt Daten
 Get-Endpunkt für Währungsarten: https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json
@@ -162,4 +163,6 @@ Hier ist das vollständige Chat-Protokoll der letzten Interaktionen mit dem AI-A
 ### 10. Benutzer: write down the whole chat actually
 **AI:** (This response) Expanded the chat section to include the full protocol as requested.
 
+### 11. Benutzer: make the ui look nice
+**AI:** Restructured and improved the HTML structure and CSS Styling
 

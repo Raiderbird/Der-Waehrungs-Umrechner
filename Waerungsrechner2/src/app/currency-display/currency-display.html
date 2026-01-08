@@ -1,27 +1,63 @@
-Währung Rechner
-<p-listbox
-  [options]="currencyList"
-  [(ngModel)]="selectedStartCurrencyDisplay"
-  (ngModelChange)="changedStartCurrency($event)"
-  class="w-full md:w-56"
-/>
-<p-listbox
-  [options]="currencyList"
-  [(ngModel)]="selectedEndCurrencyDisplay"
-  (ngModelChange)="changedEndCurrency($event)"
-  class="w-full md:w-56"
-/>
-<p-iftalabel>
-   Eingabe:
-  <p-inputnumber
-    [(ngModel)]="currencyStartValue"
-    (ngModelChange)="calculateEndValue()"
-    [disabled]="selectedStartCurrency === null && selectedEndCurrency === null"
-    inputId="currencyInput"
-  />
-</p-iftalabel>
+<div class="currency-converter">
+  <h1 class="title">Währungs-Umrechner</h1>
 
-<p-iftalabel>
-   Ausgabe:
-  <p-inputnumber [(ngModel)]="currencyEndValue"  inputId="currencyOutput" />
-</p-iftalabel>
+  <div class="converter-form">
+    <div class="currency-selection">
+      <div class="form-group">
+        <label for="startCurrency">Von Währung:</label>
+        <p-listbox
+          [options]="currencyList"
+          [(ngModel)]="selectedStartCurrencyDisplay"
+          (ngModelChange)="changedStartCurrency($event)"
+          [style]="{'width': '100%'}"
+          inputId="startCurrency"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="endCurrency">Zu Währung:</label>
+        <p-listbox
+          [options]="currencyList"
+          [(ngModel)]="selectedEndCurrencyDisplay"
+          (ngModelChange)="changedEndCurrency($event)"
+          [style]="{'width': '100%'}"
+          inputId="endCurrency"
+        />
+      </div>
+    </div>
+
+    <div class="value-inputs">
+      <div class="form-group">
+        <p-iftalabel for="currencyInput">
+          Eingabe Betrag:
+        </p-iftalabel>
+        <p-inputnumber
+          [(ngModel)]="currencyStartValue"
+          (ngModelChange)="calculateEndValue()"
+          [disabled]="!selectedStartCurrency || !selectedEndCurrency"
+          inputId="currencyInput"
+          mode="decimal"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+          placeholder="Betrag eingeben"
+          [style]="{'width': '100%'}"
+        />
+      </div>
+
+      <div class="form-group">
+        <p-iftalabel for="currencyOutput">
+          Ausgabe Betrag:
+        </p-iftalabel>
+        <p-inputnumber
+          [(ngModel)]="currencyEndValue"
+          inputId="currencyOutput"
+          mode="decimal"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+          [readonly]="true"
+          [style]="{'width': '100%'}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
