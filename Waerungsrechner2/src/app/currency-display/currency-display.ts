@@ -47,10 +47,6 @@ selectedStartCurrencyDisplay?: string;
   }
 
   calculateEndValue() {
-    console.log(this.selectedEndCurrency);
-    console.log(this.selectedStartCurrency);
-    console.log(this.currencyStartValue);
-    console.log(this.currencyExchangeValues);
     if (this.currencyStartValue && this.selectedStartCurrency && this.selectedEndCurrency) {
       const exchangeRate = this.currencyExchangeValues?.[this.selectedStartCurrency]?.[this.selectedEndCurrency];
       if (exchangeRate) {
