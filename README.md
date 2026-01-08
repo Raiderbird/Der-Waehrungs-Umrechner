@@ -11,7 +11,6 @@ Ein Angular-Projekt mit TypeScript und CSS für die Umrechnung von Währungen. T
 
 - Node.js und npm installiert
 - Angular CLI installiert
-- GitHub Desktop für Repository-Verwaltung
 
 ## Installation und Setup
 
@@ -31,11 +30,23 @@ Ein Angular-Projekt mit TypeScript und CSS für die Umrechnung von Währungen. T
 - PrimeNG installiert: `npm i primeng@20.4.0` für UI-Komponenten.
 - HTTP-Service erstellt und Endpunkt aufgerufen zum holen aller verfügbaren Währungsarten.
 - Interface generiert: `ng generate interface currencyNamesInterface` zur Datenverarbeitung.
-- Interface Datei umbenannt zu `currencyInterface` und interfaces `CurrencyNamesInterface`,`CurrencyExchangeInterface`,`CurrencyApiResponse` erstellt 
+- Interface Datei umbenannt zu `currencyInterface` und interfaces `CurrencyNamesInterface`,`CurrencyExchangeInterface`,`CurrencyApiResponse` erstellt. 
+Inferfaces:
+export interface CurrencyNamesInterface {
+  [key: string]: string;
+}
+export interface CurrencyExchangeInterface {
+  [key: string]: number;
+}
+export interface CurrencyApiResponse {
+  [key: string]: CurrencyExchangeInterface;
+}
+
+- Der erste Get Endpunkt gibt dann ein `CurrencyNamesInterface` Objekt zurück.
 - PrimeNG Theme installiert: `npm install primeng @primeng/themes` da die importierten PrimeNG Eingabefelder nicht funktioniert haben
 - Werte von den ausgewählten Währungen in den Listen auslesen
-- Erstellen der Funktion zum parsen der Währungsarten zu deren Codes
-- Im Http Service einen weiteren Endpunkt angesprochen für die Währungsumrechnungswerte
+- Erstellen der Funktion zum parsen der Währungsarten zu deren Währungscodes
+- Im Http Service einen weiteren Endpunkt angesprochen für die Währungsumrechnungswerte, hierfür wurde dann auch der Währungscode verwendet und gibt ein `CurrencyApiResponse` zurück
 - Berechnung der Währungsumwandlungswerten falls alle Daten angegeben wurden
 - Letztes refactoring und löschen des vorherigen projektes
 
