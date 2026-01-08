@@ -1,8 +1,8 @@
 export interface CurrencyNamesInterface {
-    [key: string]: string;
+  [key: string]: string;
 }
 export interface CurrencyExchangeInterface {
-    [key: string]: number;
+  [key: string]: number;
 }
 export interface CurrencyApiResponse {
   [key: string]: CurrencyExchangeInterface;

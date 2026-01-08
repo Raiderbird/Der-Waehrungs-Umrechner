@@ -7,16 +7,16 @@ import { CurrencyApiResponse, CurrencyNamesInterface } from '../interface/curren
   providedIn: 'root',
 })
 export class httpService {
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
   getAvailableCurrencies(): Observable<CurrencyNamesInterface> {
-    return this.httpClient.get<CurrencyNamesInterface>('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json')
+    return this.httpClient.get<CurrencyNamesInterface>(
+      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json'
+    );
   }
 
-getStartCurrencyExchangeValues(currencyCode: string): Observable<CurrencyApiResponse> {
-  return this.httpClient.get<CurrencyApiResponse>(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currencyCode}.json`)
-}
-
-  // https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@{date}/{apiVersion}/{endpoint}
+  getStartCurrencyExchangeValues(currencyCode: string): Observable<CurrencyApiResponse> {
+    return this.httpClient.get<CurrencyApiResponse>(
+      `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currencyCode}.json`
+    );
+  }
 }

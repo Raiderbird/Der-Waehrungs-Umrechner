@@ -10,7 +10,7 @@ import { IftaLabelModule } from 'primeng/iftalabel';
 
 @Component({
   selector: 'app-currency-display',
-  imports: [ListboxModule, CommonModule, FormsModule,InputNumberModule,IftaLabelModule ],
+  imports: [ListboxModule, CommonModule, FormsModule, InputNumberModule, IftaLabelModule],
   templateUrl: './currency-display.html',
   styleUrl: './currency-display.css',
 })
@@ -18,7 +18,7 @@ export class CurrencyDisplay implements OnInit {
   currencyList: string[] = [];
   selectedStartCurrency?: string;
   selectedEndCurrency?: string;
-selectedStartCurrencyDisplay?: string;
+  selectedStartCurrencyDisplay?: string;
 
   currencyStartValue?: number;
   currencyEndValue?: number;
@@ -34,21 +34,31 @@ selectedStartCurrencyDisplay?: string;
   }
 
   async changedStartCurrency(selectedStartCurrencyDisplay: string) {
-    const currencyCode = this.getCodeFromCurrencyList(this.currencyList, selectedStartCurrencyDisplay);
-    this.selectedStartCurrency = this.selectedStartCurrencyDisplay?.substring(0, this.selectedStartCurrencyDisplay.indexOf(' '));;
+    const currencyCode = this.getCodeFromCurrencyList(
+      this.currencyList,
+      selectedStartCurrencyDisplay
+    );
+    this.selectedStartCurrency = this.selectedStartCurrencyDisplay?.substring(
+      0,
+      this.selectedStartCurrencyDisplay.indexOf(' ')
+    );
     this.currencyExchangeValues = await firstValueFrom(
       this.httpService.getStartCurrencyExchangeValues(currencyCode)
     );
   }
 
   changedEndCurrency(selectedEndCurrencyDisplay: string) {
-    this.selectedEndCurrency = selectedEndCurrencyDisplay.substring(0, selectedEndCurrencyDisplay.indexOf(' '));
+    this.selectedEndCurrency = selectedEndCurrencyDisplay.substring(
+      0,
+      selectedEndCurrencyDisplay.indexOf(' ')
+    );
     this.calculateEndValue();
   }
 
   calculateEndValue() {
     if (this.currencyStartValue && this.selectedStartCurrency && this.selectedEndCurrency) {
-      const exchangeRate = this.currencyExchangeValues?.[this.selectedStartCurrency]?.[this.selectedEndCurrency];
+      const exchangeRate =
+        this.currencyExchangeValues?.[this.selectedStartCurrency]?.[this.selectedEndCurrency];
       if (exchangeRate) {
         this.currencyEndValue = this.currencyStartValue * exchangeRate;
       }
