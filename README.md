@@ -1,6 +1,6 @@
 # Der Währungs-Umrechner
 
-Ein Angular-Projekt mit TypeScript und CSS für die Umrechnung von Währungen. Tests werden ignoriert. Der Visual Studio Code Copilot Agent wurde verwendet.
+Ein Angular-Projekt mit TypeScript und CSS für die Umrechnung von Währungen. Der Visual Studio Code Copilot Agent wurde verwendet.
 
 ## Projektübersicht
 
