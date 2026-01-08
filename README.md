@@ -20,6 +20,7 @@ ng generate interface currencyNamesInterface  - um die erhaltenen daten zu parse
 primeng theme installiert
 npm install primeng @primeng/themes
 
+Inline Code Empfelungen gehen so hart auf den sack, junge die halluzinieren einfach den ['key'] wert als wäre der ein festwert
 
 
 

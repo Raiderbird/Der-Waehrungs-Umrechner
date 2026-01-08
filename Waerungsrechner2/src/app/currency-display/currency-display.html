@@ -1,5 +1,27 @@
-<p>currency-display works!</p>
-poggers
-<input>
-<p-listbox [options]="currencyList" [(ngModel)]="selectedStartCurrency" class="w-full md:w-56" />
-<p-listbox [options]="currencyList" [(ngModel)]="selectedEndCurrency" class="w-full md:w-56" />
+Währung Rechner
+<p-listbox
+  [options]="currencyList"
+  [(ngModel)]="selectedStartCurrency"
+  (ngModelChange)="changedStartCurrency($event)"
+  class="w-full md:w-56"
+/>
+<p-listbox
+  [options]="currencyList"
+  [(ngModel)]="selectedEndCurrency"
+  (ngModelChange)="changedEndCurrency($event)"
+  class="w-full md:w-56"
+/>
+<p-iftalabel>
+  <label for="currencyInput">Eingabe</label>
+  <p-inputnumber
+    [(ngModel)]="currencyStartValue"
+    mode="decimal"
+    [disabled]="selectedStartCurrency === null && selectedEndCurrency === null"
+    inputId="currencyInput"
+  />
+</p-iftalabel>
+
+<p-iftalabel>
+  <label for="currencyOutput">Ausgabe</label>
+  <p-inputnumber [(ngModel)]="currencyEndValue" mode="decimal" inputId="currencyOutput" />
+</p-iftalabel>

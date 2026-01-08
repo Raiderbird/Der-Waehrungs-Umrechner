@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { CurrencyNamesInterface } from '../interface/currency-names-interface';
+import { CurrencyApiResponse, CurrencyNamesInterface } from '../interface/currency-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,4 +13,10 @@ export class httpService {
   getAvailableCurrencies(): Observable<CurrencyNamesInterface> {
     return this.httpClient.get<CurrencyNamesInterface>('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json')
   }
+
+getStartCurrencyExchangeValues(currencyCode: string): Observable<CurrencyApiResponse> {
+  return this.httpClient.get<CurrencyApiResponse>(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currencyCode}.json`)
+}
+
+  // https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@{date}/{apiVersion}/{endpoint}
 }
