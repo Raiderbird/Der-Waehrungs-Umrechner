@@ -1,27 +1,29 @@
 Währung Rechner
 <p-listbox
   [options]="currencyList"
-  [(ngModel)]="selectedStartCurrency"
+  [(ngModel)]="selectedStartCurrencyDisplay"
   (ngModelChange)="changedStartCurrency($event)"
   class="w-full md:w-56"
 />
 <p-listbox
   [options]="currencyList"
-  [(ngModel)]="selectedEndCurrency"
+  [(ngModel)]="selectedEndCurrencyDisplay"
   (ngModelChange)="changedEndCurrency($event)"
   class="w-full md:w-56"
 />
 <p-iftalabel>
-  <label for="currencyInput">Eingabe</label>
+  <!-- <label for="currencyInput">Eingabe</label> -->
+   Eingabe:
   <p-inputnumber
     [(ngModel)]="currencyStartValue"
-    mode="decimal"
+    (ngModelChange)="calculateEndValue()"
     [disabled]="selectedStartCurrency === null && selectedEndCurrency === null"
     inputId="currencyInput"
   />
 </p-iftalabel>
 
 <p-iftalabel>
-  <label for="currencyOutput">Ausgabe</label>
-  <p-inputnumber [(ngModel)]="currencyEndValue" mode="decimal" inputId="currencyOutput" />
+  <!-- <label for="currencyOutput">Ausgabe</label> -->
+   Ausgabe:
+  <p-inputnumber [(ngModel)]="currencyEndValue"  inputId="currencyOutput" />
 </p-iftalabel>

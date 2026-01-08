@@ -4,7 +4,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { CurrencyApiResponse, CurrencyExchangeInterface } from '../interface/currency-interface';
+import { CurrencyApiResponse } from '../interface/currency-interface';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { IftaLabelModule } from 'primeng/iftalabel';
 
@@ -18,10 +18,11 @@ export class CurrencyDisplay implements OnInit {
   currencyList: string[] = [];
   selectedStartCurrency?: string;
   selectedEndCurrency?: string;
+selectedStartCurrencyDisplay?: string;
 
   currencyStartValue?: number;
   currencyEndValue?: number;
-
+  selectedEndCurrencyDisplay?: string;
   currencyExchangeValues?: CurrencyApiResponse;
 
   constructor(private httpService: httpService) {}
@@ -32,27 +33,29 @@ export class CurrencyDisplay implements OnInit {
     });
   }
 
-  async changedStartCurrency(selectedStartCurrency: string) {
-    const currencyCode = this.getCodeFromCurrencyList(this.currencyList, selectedStartCurrency);
+  async changedStartCurrency(selectedStartCurrencyDisplay: string) {
+    const currencyCode = this.getCodeFromCurrencyList(this.currencyList, selectedStartCurrencyDisplay);
+    this.selectedStartCurrency = this.selectedStartCurrencyDisplay?.substring(0, this.selectedStartCurrencyDisplay.indexOf(' '));;
     this.currencyExchangeValues = await firstValueFrom(
       this.httpService.getStartCurrencyExchangeValues(currencyCode)
     );
   }
 
-  changedEndCurrency(selectedEndCurrency: string) {
-    this.calculateEndValue(selectedEndCurrency.substring(0, selectedEndCurrency.indexOf(' ')));
+  changedEndCurrency(selectedEndCurrencyDisplay: string) {
+    this.selectedEndCurrency = selectedEndCurrencyDisplay.substring(0, selectedEndCurrencyDisplay.indexOf(' '));
+    this.calculateEndValue();
   }
 
-  calculateEndValue(selectedEndCurrency: string) {
-    console.log(selectedEndCurrency);
+  calculateEndValue() {
+    console.log(this.selectedEndCurrency);
     console.log(this.selectedStartCurrency);
     console.log(this.currencyStartValue);
-    if (this.currencyStartValue && this.selectedStartCurrency && selectedEndCurrency) {
-      const exchangeRate = this.currencyExchangeValues?.[this.selectedStartCurrency]?.[selectedEndCurrency];
+    console.log(this.currencyExchangeValues);
+    if (this.currencyStartValue && this.selectedStartCurrency && this.selectedEndCurrency) {
+      const exchangeRate = this.currencyExchangeValues?.[this.selectedStartCurrency]?.[this.selectedEndCurrency];
       if (exchangeRate) {
         this.currencyEndValue = this.currencyStartValue * exchangeRate;
       }
-      console.log(exchangeRate)
     }
   }
 
